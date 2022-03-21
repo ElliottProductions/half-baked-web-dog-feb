@@ -29,3 +29,15 @@ export async function getDog(id) {
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
+
+export async function dogQuery(inputed){
+    const response = await client
+        .from('dogs')
+        .select('*')
+        .eq('name', inputed)
+        .single();
+
+    console.log(`in dogQuery function: ${response}`);
+
+    return checkError(response);
+}

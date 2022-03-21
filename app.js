@@ -1,14 +1,18 @@
-import { getDogs } from './fetch-utils.js';
+import { getDogs, dogQuery } from './fetch-utils.js';
 import { renderDogCard } from './render-utils.js';
 
 const dogListContainer = document.getElementById('dog-list-container');
-const dogSearchForm = document.querySelector('.name-input');
+const dogSearchForm = document.getElementById('name-input');
+const dogSearchButton = document.getElementById('dog-button');
+
+let allDogs = [];
+
 
 const dogList = document.getElementById('dog-list-container');
 // on load
 window.addEventListener('load', async() => {
     //sends request
-    const allDogs = await getDogs();
+    allDogs = await getDogs();
 
     //render and append response
     for (let dog of allDogs) {
@@ -20,7 +24,15 @@ window.addEventListener('load', async() => {
 // fetch all dogs
 // render and append all dog cards to the container
 
-dogSearchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('form');
+dogSearchButton.addEventListener('click', async() => {
+    dogListContainer.innerHTML = '';
+    const data = dogSearchForm.value;
+    const foundDog = await dogQuery(data);
+
+    const dogEl = renderDogCard(foundDog);
+
+    dogList.append(dogEl);
+    
+    
+    //const allDogs = await getDogs();
 });

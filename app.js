@@ -2,6 +2,7 @@ import { getDogs } from './fetch-utils.js';
 import { renderDogCard } from './render-utils.js';
 
 const dogListContainer = document.getElementById('dog-list-container');
+const dogSearchForm = document.querySelector('.name-input');
 
 const dogList = document.getElementById('dog-list-container');
 // on load
@@ -18,3 +19,8 @@ window.addEventListener('load', async() => {
 });
 // fetch all dogs
 // render and append all dog cards to the container
+
+dogSearchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('form');
+});

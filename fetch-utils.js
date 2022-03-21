@@ -1,7 +1,7 @@
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
-const client = client.createClient(SUPABASE_URL, SUPABASE_KEY);
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function getDogs() {
     // from the dogs table, select all items
@@ -9,8 +9,8 @@ export async function getDogs() {
         .from('dogs')
         .select('*');
     // and return the response (checking for errors)
-    //return checkError(response);    
-    return response.body;
+    return checkError(response);    
+    //return response;
 }
 
 export async function getDog(id) {
@@ -18,11 +18,12 @@ export async function getDog(id) {
     const response = await client
         .from('ice_creams')
         .select('*')
-        .match({ id: 4 })
+        .match({ id: id })
 
         .single(); //keeps from returning an array with one item
     // and return the response (checking for errors)
     return checkError(response);    
+
 }
 
 function checkError({ data, error }) {

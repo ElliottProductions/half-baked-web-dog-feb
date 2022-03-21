@@ -31,13 +31,14 @@ function checkError({ data, error }) {
 }
 
 export async function dogQuery(inputed){
+
+    const inputedCapitalize = inputed.charAt(0).toUpperCase() + inputed.slice(1);
     const response = await client
         .from('dogs')
         .select('*')
-        .eq('name', inputed)
+        .eq('name', inputedCapitalize)
         .single();
 
-    console.log(`in dogQuery function: ${response}`);
 
     return checkError(response);
 }

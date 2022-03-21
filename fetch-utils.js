@@ -16,7 +16,7 @@ export async function getDogs() {
 export async function getDog(id) {
     // from the dogs table, select a single dog who has the matching id
     const response = await client
-        .from('ice_creams')
+        .from('dogs')
         .select('*')
         .match({ id: id })
 

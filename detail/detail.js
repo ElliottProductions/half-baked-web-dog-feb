@@ -7,7 +7,7 @@ const dogDetailContainer = document.getElementById('dog-detail-container');
 
 window.addEventListener('load', async() => {
     const data = new URLSearchParams(window.location.search);
-
+    
     const dogId = data.get('id');
 
     const specificDog = await getDog(dogId);
